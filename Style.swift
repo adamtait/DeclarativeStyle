@@ -16,7 +16,9 @@ enum StyleType
     case borderWidth
     case cornerRadius
     case text
-    case font
+    case textAlignment
+    case fontName
+    case fontSize
     case imageName
     case insets
 }
