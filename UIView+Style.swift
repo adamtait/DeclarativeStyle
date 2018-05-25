@@ -24,4 +24,10 @@ extension UIView
             self.layer.cornerRadius = toCgFloat(anyNumber: v)
         }
     }
+    
+    convenience init(with style: Style)
+    {
+        self.init()
+        self.set(style: style)
+    }
 }
