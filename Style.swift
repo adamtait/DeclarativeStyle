@@ -7,6 +7,10 @@
 //
 
 import Foundation
+import UIKit
+
+
+
 
 enum StyleType
 {
@@ -15,7 +19,6 @@ enum StyleType
     case borderColor
     case borderWidth
     case cornerRadius
-    case text
     case textAlignment
     case fontName
     case fontSize
@@ -24,10 +27,29 @@ enum StyleType
 }
 typealias Style = [StyleType : Any]
 
-func merge(styles s: [Style]) -> Style
-{
-    return s.reduce([:], { acc, style in
-        acc.merging(style, uniquingKeysWith: { (_, n) in n})
-    })
-}
 
+
+// AKA "Style"
+extension Dictionary where Key == StyleType
+{
+    static func merge(_ styles: [Style]) -> Style
+    {
+        return styles.reduce([:], { acc, style in
+            acc.merging(style, uniquingKeysWith: { (_, n) in n})
+        })
+    }
+    
+    func merge(_ styles: [Style]) -> Style
+    {
+        let s = [self] + styles
+        return Dictionary.merge(s)
+    }
+
+    
+    func font() -> UIFont
+    {
+        let n = self[.fontName] as! String
+        let s = CGFloat(self[.fontSize] as! Double)
+        return UIFont(name: n, size: s)!
+    }
+}
