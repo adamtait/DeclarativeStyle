@@ -14,6 +14,7 @@ import UIKit
 
 enum StyleType
 {
+    case alpha
     case bgColor
     case fgColor
     case borderColor
@@ -23,7 +24,7 @@ enum StyleType
     case fontName
     case fontSize
     case imageName
-    case insets
+    case insets             // NOTE this a layout attribute, not a style attribute
 }
 typealias Style = [StyleType : Any]
 
